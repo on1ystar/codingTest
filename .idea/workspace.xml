@@ -257,16 +257,6 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/greedy/무지의 먹방 라이브.py</url>
-          <line>37</line>
-          <option name="timeStamp" value="21" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/greedy/무지의 먹방 라이브.py</url>
-          <line>40</line>
-          <option name="timeStamp" value="22" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/greedy/무지의 먹방 라이브.py</url>
           <line>45</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>

@@ -29,6 +29,8 @@
 #     return answer
 
 def solution(food_times, k):
+    if sum(food_times) <= k:
+        return -1
     answer = 0
     food_times_dic = {}
     for i, v in enumerate(food_times):
@@ -41,8 +43,6 @@ def solution(food_times, k):
                 if temp <= 0:
                     k -= iter_cnt + temp
                     del food_times_dic[key]
-                    if food_times_dic == {}:
-                        return -1
                 else:
                     k -= iter_cnt
                     food_times_dic[key] = temp
