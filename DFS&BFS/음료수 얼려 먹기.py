@@ -31,7 +31,7 @@ def bfs(graph, start, visited):
 
 N, M = map(int, input().rstrip().split())
 ice_frame = []
-graph = [[]] * (N*M)
+graph = [[] for _ in range(N*M)]
 for _ in range(N):
     ice_frame.append([x for x in input()])
 
