@@ -1,4 +1,5 @@
 from collections import deque
+import sys
 
 dx = [0,-1,-1,-1,0,1,1,1]
 dy = [1,1,0,-1,-1,-1,0,1]
@@ -18,13 +19,13 @@ def bfs(w, h, i, j):
                     queue.append((next_i, next_j))
 
 while True:
-    w, h = map(int, input().rstrip().split())
+    w, h = map(int, sys.stdin.readline().split())
     if w == 0 and h == 0:
         break
     island = []
     island_cnt = 0
     for _ in range(h):
-        island.append(list(map(int, input().rstrip().split())))
+        island.append(list(map(int, sys.stdin.readline().split())))
     for i in range(h):
         for j in range(w):
             if island[i][j] == 1:

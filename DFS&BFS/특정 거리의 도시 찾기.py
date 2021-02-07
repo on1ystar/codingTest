@@ -1,32 +1,23 @@
+from sys import stdin
 from collections import deque
-
-def dfs(v, cnt):
-    if cnt > K:
-        return
-    cnt += 1
-    for next in street_map[v]:
-        if next in city.keys():
-            if city[next] > cnt:
-                city[next] = cnt
-        else:
-            city[next] = cnt
-        dfs(next, cnt)
 
 
 N, M, K, X = map(int, input().rstrip().split())
 street_map = [[] for _ in range(N+1)]
 for _ in range(M):
-    A, B = map(int, input().rstrip().split())
+    A, B = map(int, stdin.readline().rstrip().split())
     street_map[A].append(B)
+found_cities = [-1] * (N + 1)
+found_cities[X] = 0
+queue = deque([X])
+while queue:
+    city = queue.popleft()
+    for next_city in street_map[city]:
+        if found_cities[next_city] == -1:
+            found_cities[next_city] = found_cities[city] + 1
+            queue.append(next_city)
 
-city = {}
-city_k = []
-dfs(X, 0)
-for c in city:
-    if city[c] == K:
-        city_k.append(c)
-if len(city_k) == 0:
-    print(-1)
-else:
-    for c in sorted(city_k):
-        print(c)
+for city in range(len(found_cities)):
+    if found_cities[city] == K:
+        print(city)
+if K not in found_cities: print(-1)
