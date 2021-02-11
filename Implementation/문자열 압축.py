@@ -1,32 +1,34 @@
 def solution(s):
-    if s == "":
-        return 0
-    if len(s)//2+1 == 1:
-        return 1
-    answer = []
-    for i in range(1, len(s)//2+1):
-        s_comp = []
-        j = 0
-        cnt = 1
-        while j+i+i <= len(s):
-            if s[j:j+i] == s[j+i:j+i+i]:
-                cnt += 1
-                j += i
-            else:
-                if cnt == 1:
-                    s_comp.append(s[j:j+i])
-                    j += i
+    max_slice_len = len(s) // 2
+    slice_len = 1
+    min_compression_len = len(s)
+    while slice_len <= max_slice_len:
+        pre_slice = ""
+        duplicate_cnt = 1
+        compression_s = ""
+        for i in range(0,len(s),slice_len):
+            if i+slice_len <= len(s):
+                now_slice = s[i:i + slice_len]
+                if pre_slice == "":
+                    pre_slice = now_slice
+                elif pre_slice == now_slice:
+                    duplicate_cnt += 1
                 else:
-                    s_comp.append(str(cnt))
-                    s_comp.append(s[j:j+i])
-                    j += i
-                    cnt = 1
-        if cnt == 1:
-            s_comp.append(s[j:])
+                    if duplicate_cnt != 1:
+                        compression_s += str(duplicate_cnt) + pre_slice
+                    else:
+                        compression_s += pre_slice
+                    pre_slice = now_slice
+                    duplicate_cnt = 1
+            else:
+                pre_slice += s[i:]
+        if duplicate_cnt != 1:
+            compression_s += str(duplicate_cnt) + pre_slice
         else:
-            s_comp.append(str(cnt))
-            s_comp.append(s[j:j+i])
-            if j+i < len(s):
-                s_comp.append(s[j+i:])
-        answer.append(len(''.join(s_comp)))
-    return min(answer)
+            compression_s += pre_slice
+        if min_compression_len > len(compression_s):
+            min_compression_len = len(compression_s)
+        slice_len += 1
+    return min_compression_len
+
+print(solution("xababcdcdababcdcd"))
