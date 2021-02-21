@@ -13,4 +13,5 @@ for coin in coins:
         if i//coin == 0:
             continue
         dp[i] += dp[i - coin]
+    print(f'coin={coin}:', dp)
 print(dp[K])
