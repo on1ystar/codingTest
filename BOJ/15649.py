@@ -1,3 +1,5 @@
+# N과 M (1)
+
 # from itertools import permutations
 
 # N, M = map(int, input().rstrip().split())
