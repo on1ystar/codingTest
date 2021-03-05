@@ -1,3 +1,5 @@
+# N과 M (4)
+
 from sys import stdout
 from itertools import combinations_with_replacement
 
