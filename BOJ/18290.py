@@ -13,6 +13,7 @@
 #     grid.append(list(map(int, input().rstrip().split())))
 
 # all_combi = combinations(product([x for x in range(N)], [x for x in range(M)]), K)
+
 # for combi in all_combi:
 #     combi_sum = 0
 #     near = False
@@ -30,29 +31,30 @@
 # print(max(res))
 
 
-
-
-
-
-def dfs(now_i, now_j):
-    global res
-    if len(selected_nums) == K:
-        res = max(res, sum(selected_nums))
+def dfs(now_i, now_j, level, now_sum):
+    if level == K:
+        global res
+        res = max(res, now_sum)
         return
     
     for near_i, near_j in near_idx:
         temp_i, temp_j = now_i+near_i, now_j+near_j
-        if 0<=temp_i<N and 0<=temp_j<M:
-            visited[temp_i][temp_j] += -1
+        if temp_i<N and temp_j<M:
+            near_check[temp_i][temp_j] += -1
 
-    for i in range(N):
+    for j in range(now_j+1, M):
+        if near_check[now_i][j] == 0:
+            dfs(now_i, j, level+1, now_sum+grid[now_i][j])
+
+    for i in range(now_i+1, N):
         for j in range(M):
-            if visited[i][j] == 0:
-                selected_nums.append(grid[i][j])
-                visited[i][j] = 1
-                dfs(i, j)
-                selected_nums.pop()
-                visited[i][j] = 0
+            if near_check[i][j] == 0:
+                dfs(i, j, level+1, now_sum+grid[i][j])
+    
+    for near_i, near_j in near_idx:
+        temp_i, temp_j = now_i+near_i, now_j+near_j
+        if temp_i<N and temp_j<M:
+            near_check[temp_i][temp_j] += 1
 
 if __name__ == "__main__":
     N, M, K = map(int, input().rstrip().split())
@@ -61,13 +63,9 @@ if __name__ == "__main__":
         grid.append(list(map(int, input().rstrip().split())))
 
     near_idx = [[0, 1], [1, 0]]
-    visited = [[0]*M for _ in range(N)]
-    res = 0
-    selected_nums = []
+    near_check = [[0]*M for _ in range(N)]
+    res = -40001
     for start_i in range(N):
         for start_j in range(M):
-            selected_nums.append(grid[start_i][start_j])
-            visited[start_i][start_j] = 1
-            dfs(start_i, start_j)
-            selected_nums.pop()
+            dfs(start_i, start_j, 1, grid[start_i][start_j])
     print(res)
