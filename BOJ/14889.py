@@ -7,6 +7,7 @@ if __name__ == "__main__":
     S = []
     for _ in range(N):
         S.append(list(map(int, input().split())))
+    sum_S = sum(S)
     min_diff = 1000
     team_start_list = list(combinations(range(N), N//2))
     for team_start in team_start_list[:len(team_start_list)//2]:
