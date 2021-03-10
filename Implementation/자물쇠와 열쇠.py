@@ -1,3 +1,5 @@
+import copy
+
 def rotation(m, copied_key):
     rotated_key = [[0] * m for _ in range(m)]
     for i in range(m):
@@ -37,7 +39,7 @@ def solution(key, lock):
                 if answer:
                     return answer
                 init(m, lock, expanded_lock)
-        key = rotation(m, key.copy())
+        key = rotation(m, copy.deepcopy(key))
     return answer
 
 
