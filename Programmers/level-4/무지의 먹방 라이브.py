@@ -1,9 +1,14 @@
 def solution(food_times, k):
     answer = 0
     rest_foods_cnt = len(food_times)
-    rotation_times = k // rest_foods_cnt
-    k %= rest_foods_cnt
-    while rotation_times > 0:
+    while True:
+        if rest_foods_cnt == 0:
+            answer = -1
+            break
+        rotation_times = k // rest_foods_cnt
+        k %= rest_foods_cnt
+        if rotation_times == 0:
+            break
         for i in range(len(food_times)):
             if food_times[i] <= 0: 
                 continue
@@ -13,11 +18,6 @@ def solution(food_times, k):
                 k += rotation_times - food_times[i]
                 food_times[i] = 0
                 rest_foods_cnt -= 1
-        if rest_foods_cnt == 0:
-            answer = -1
-            break
-        rotation_times = k // rest_foods_cnt
-        k %= rest_foods_cnt
     if answer != -1:
         for i in range(len(food_times)):
             if food_times[i] <= 0: continue
