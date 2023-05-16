@@ -13,3 +13,4 @@
 [이것이 취업을 위한 코딩테스트다 - 나동빈](https://github.com/ndb796/python-for-coding-test)  
 [백준](https://www.acmicpc.net/)  
 [프로그래머스](https://programmers.co.kr/)
+[프로그래머스 코딩테스트 문제 풀이 전략 : 자바편](http://www.yes24.com/Product/Goods/117372853)
