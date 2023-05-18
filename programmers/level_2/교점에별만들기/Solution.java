@@ -1,3 +1,5 @@
+// https://school.programmers.co.kr/learn/courses/30/lessons/87377
+
 package codingtest.programmers.level_2.교점에별만들기;
 
 import java.util.ArrayList;
@@ -50,10 +52,10 @@ class Solution {
 
 class Point {
     
-    int x;
-    int y;
+    long x;
+    long y;
 
-    public Point(int x, int y) {
+    public Point(long x, long y) {
         this.x = x;
         this.y = y;
     }
@@ -61,9 +63,9 @@ class Point {
 
 class Line {
 
-    int a;  // x의 계수(A)
-    int b;  // y의 계수(B)
-    int c;  // 상수(C)
+    long a;  // x의 계수(A)
+    long b;  // y의 계수(B)
+    long c;  // 상수(C)
 
     public Line(int[] l) {
         this.a = l[0];
@@ -89,11 +91,11 @@ class Line {
         double y = (line1.c * line2.a - line1.a * line2.c) / denominator;  // 교점의 y 좌표
 
         // 좌표 값이 정수가 아닌 경우
-        if( (int) x != x || (int) y != y ) {
+        if( (long) x != x || (long) y != y ) {
             return null;
         }
 
-        return new Point((int) x, (int) y);
+        return new Point((long) x, (long) y);
     }
 }
 
@@ -102,10 +104,10 @@ class Line {
  */
 class CoordinatePlane {
 
-    int maxX = -1_000_000;  // 교점들 중 x 최댓값
-    int maxY = -1_000_000;;  // 교점들 중 y 최댓값
-    int minX = 1_000_000;;  // 교점들 중 x 최솟값
-    int minY = 1_000_000;;  // 교점들 중 y 최솟값
+    long maxX = Long.MIN_VALUE;  // 교점들 중 x 최댓값
+    long maxY = Long.MIN_VALUE;  // 교점들 중 y 최댓값
+    long minX = Long.MAX_VALUE;  // 교점들 중 x 최솟값
+    long minY = Long.MAX_VALUE;  // 교점들 중 y 최솟값
     List<Point> intersections = new ArrayList<>();  // 교점
 
     public void addIntersection(Point p) {
@@ -122,13 +124,13 @@ class CoordinatePlane {
 
     // 좌표 평면에 교점 그리기
     public String[] print() {
-        int height = maxY - minY + 1;    // 최소 사각형의 세로 크기
-        int width = maxX - minX + 1;     // 최소 사각형의 가로 크기
-        String[] answer = new String[height];
-        Arrays.fill(answer, ".".repeat(width));
+        long height = maxY - minY + 1;    // 최소 사각형의 세로 크기
+        long width = maxX - minX + 1;     // 최소 사각형의 가로 크기
+        String[] answer = new String[Long.valueOf(height).intValue()];
+        Arrays.fill(answer, ".".repeat(Long.valueOf(width).intValue()));
         intersections.forEach(point -> {
-            int yIndex = Math.abs(point.y - maxY);  // String 배열에서의 y 좌표 위치(행)
-            int xIndex = point.x - minX;            // String 배열에서의 x 좌표 위치(열)
+            int yIndex = Math.abs(Long.valueOf(point.y - maxY).intValue());  // String 배열에서의 y 좌표 위치(행)
+            int xIndex = Long.valueOf(point.x - minX).intValue();            // String 배열에서의 x 좌표 위치(열)
             try {
                 answer[yIndex] = answer[yIndex].substring(0, xIndex) + "*" + answer[yIndex].substring(xIndex + 1);
             } catch (StringIndexOutOfBoundsException e) {
