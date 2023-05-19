@@ -1,6 +1,6 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/87377
 
-package codingtest.programmers.level_2.교점에별만들기;
+package programmers.level_2.교점에별만들기;
 
 import java.util.ArrayList;
 import java.util.Arrays;
