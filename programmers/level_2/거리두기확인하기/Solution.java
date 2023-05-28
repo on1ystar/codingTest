@@ -2,7 +2,7 @@
 
 package programmers.level_2.거리두기확인하기;
 
-import java.time.Year;
+// import java.time.Year;
 import java.util.Arrays;
 
 class Test {
