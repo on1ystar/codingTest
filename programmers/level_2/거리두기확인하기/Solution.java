@@ -1,6 +1,6 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/81302?language=java
 
-package programmers.level_2.거리두기확인하기;
+package level_2.거리두기확인하기;
 
 // import java.time.Year;
 import java.util.Arrays;

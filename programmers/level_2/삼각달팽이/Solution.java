@@ -1,6 +1,6 @@
 // https://school.programmers.co.kr/learn/courses/30/lessons/68645
 
-package programmers.level_2.삼각달팽이;
+package level_2.삼각달팽이;
 
 class Test {
 
